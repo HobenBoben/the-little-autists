@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="section-title">Админ панель</h2>
+
+<!-- Форма для новостей -->
+<div class="card-modern">
+    <h4>➕ Добавить новость</h4>
+    <form method="POST">
+        <input class="form-control mb-2" name="title" placeholder="Заголовок" required>
+        <textarea class="form-control mb-2" name="text" placeholder="Текст новости" required></textarea>
+        <button name="news" class="btn btn-modern">Добавить новость</button>
+    </form>
+</div>
+
+<!-- Форма для игроков -->
+<div class="card-modern">
+    <h4>➕ Добавить игрока</h4>
+    <form method="POST">
+        <input class="form-control mb-2" name="name" placeholder="Имя игрока" required>
+        <input class="form-control mb-2" name="role" placeholder="Роль (например, нападающий)" required>
+        <textarea class="form-control mb-2" name="stats" placeholder="Статистика/описание" required></textarea>
+        <button name="player" class="btn btn-modern">Добавить игрока</button>
+    </form>
+</div>
+
+<!-- Список существующих игроков с возможностью редактирования -->
+<div class="card-modern">
+    <h4>📋 Существующие игроки</h4>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Роль</th>
+                    <th>Статистика</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in players %}
+                <tr>
+                    <td>{{ p[0] }}</td>
+                    <td>{{ p[1] }}</td>
+                    <td>{{ p[2] }}</td>
+                    <td>{{ p[3][:50] + '...' if p[3]|length > 50 else p[3] }}</td>
+                    <td>
+                        <a href="/edit_player/{{ p[0] }}" class="btn btn-sm btn-modern">✏️</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Форма для матчей -->
+<div class="card-modern">
+    <h4>➕ Добавить матч</h4>
+    <form method="POST">
+        <input class="form-control mb-2" name="opponent" placeholder="Соперник" required>
+        <input class="form-control mb-2" name="score" placeholder="Счёт (например, 5:2)" required>
+        <input class="form-control mb-2" name="date" placeholder="Дата матча (например, 2025-02-13)" required>
+        <button name="match" class="btn btn-modern">Добавить матч</button>
+    </form>
+</div>
+
+<!-- Форма для реплеев (с загрузкой файла) -->
+<div class="card-modern">
+    <h4>➕ Добавить реплей (загрузить файл)</h4>
+    <form method="POST" enctype="multipart/form-data">
+        <input class="form-control mb-2" name="title" placeholder="Название реплея" required>
+        <input class="form-control mb-2" type="file" name="replay_file" accept="video/*,.mcworld,.zip" required>
+        <button name="replay" class="btn btn-modern">Загрузить реплей</button>
+    </form>
+</div>
+
+{% endblock %}

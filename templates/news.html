@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="section-title">Новости команды</h2>
+
+{% for n in news %}
+<div class="card-modern">
+    <h4>{{ n[1] }}</h4>
+    <p>{{ n[2] }}</p>
+    <small class="text-muted">Опубликовано: {{ n[3] | datetime }}</small>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Фиксированный фон (изображение команды) -->
+<div class="fixed-bg" id="bg-blur"></div>
+
+<!-- Заголовок команды (остаётся на месте) -->
+<div class="hero-title-container">
+    <h1 class="hero-title">The Little Outsiders</h1>
+</div>
+
+<!-- Контейнер с новостями (выезжает снизу) -->
+<div class="content-overlay">
+    <h2 class="section-title">Новости команды</h2>
+    
+    {% for n in news %}
+<div class="card-modern">
+    <h4>{{ n[1] }}</h4>
+    <p>{{ n[2] }}</p>
+    <small class="text-muted">Опубликовано: {{ n[3] | datetime }} UTC</small>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

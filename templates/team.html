@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="section-title">Состав команды</h2>
+
+<div class="row">
+{% for p in players %}
+
+<div class="col-md-4">
+<div class="card-modern text-center">
+
+<h4>{{p[1]}}</h4>
+<p>{{p[2]}}</p>
+
+<a href="/player/{{p[0]}}" class="btn btn-modern">
+Статистика
+</a>
+
+</div>
+</div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

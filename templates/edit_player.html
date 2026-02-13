@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card-modern">
+    <h2>Редактировать игрока: {{ player[1] }}</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Имя</label>
+            <input class="form-control" name="name" value="{{ player[1] }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Роль</label>
+            <input class="form-control" name="role" value="{{ player[2] }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Статистика</label>
+            <textarea class="form-control" name="stats" rows="5" required>{{ player[3] }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-modern">Сохранить</button>
+        <a href="/admin" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}
